@@ -19,9 +19,21 @@ if [ -z "$info" ] || [ -z "$executable_path" ]; then
 fi
 
 # Se obtiene la información relevante del proceso
+
 process_name=$(echo "$info" | awk '{print $1}')
 process_pid=$(echo "$info" | awk '{print $2}')
 user=$(echo "$info" | awk '{print $3}')
 cpu_usage=$(echo "$info" | awk '{print $4}')
 mem_usage=$(echo "$info" | awk '{print $5}')
 status=$(echo "$info" | awk '{print $6}')
+
+
+# Se muestra la información obtenida del proceso
+
+echo "Nombre del proceso: $process_name"
+echo "ID del proceso: $process_pid"
+echo "Usuario propietario: $user"
+echo "Porcentaje de CPU: $cpu_usage%"
+echo "Consumo de memoria: $mem_usage%"
+echo "Estado: $status"
+echo "Path del ejecutable: $executable_path"
