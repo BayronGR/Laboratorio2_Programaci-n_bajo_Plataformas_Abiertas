@@ -34,3 +34,17 @@ while is_brave_running; do
     break
   fi
 done
+
+# Se crea la gráfica con Gnuplot, y se exporta la imagene en formato png
+gnuplot <<EOF
+    set terminal png
+    set output 'grafica.png'
+    set title 'Consumo de CPU y Memoria de $ejecutable'
+    set xlabel 'Tiempo (segundos)'
+    set ylabel 'Porcentaje'
+    plot "$log_file" using 1 with lines title 'CPU', \
+         "$log_file" using 2 with lines title 'Memoria'
+EOF
+
+echo "Ha finalizado el monitoreo, ver resultados en 'grafica.png'."
+echo "Presione Ctrl+C para salir"
